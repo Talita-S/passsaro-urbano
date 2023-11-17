@@ -14,6 +14,13 @@ export class HomeComponent {
   constructor(private offersService: OffersService) {}
 
   ngOnInit() {
-    this.offers = this.offersService.getOffers();
+    this.offersService
+      .getOffers()
+      .then((offers: Offer[]) => {
+        this.offers = offers;
+      })
+      .catch((param: any) => {
+        console.log(param);
+      });
   }
 }

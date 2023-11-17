@@ -52,7 +52,15 @@ export class OffersService {
     },
   ];
 
-  public getOffers(): Array<any> {
+  public async getOffers(): Promise<Offer[]> {
+    await new Promise((resolve, reject) => {
+      let it_works = true;
+      if (it_works) {
+        setTimeout(() => resolve(this.offers), 3000);
+      } else {
+        reject({ error_code: 404, error_message: 'Servidor não encontrado' });
+      }
+    });
     return this.offers;
   }
 }
